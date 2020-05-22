@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import pdb
 import sys
+from .werewolf_roles import roles
 
 app = Flask(__name__)
 
@@ -10,6 +11,5 @@ def render_HTML():
 
 @app.route('/distribute_role', methods=['GET'])
 def distribute_role():
-    input_form = request.form
-    # TODO: Implement role distribution
-    return jsonify(['Seer', 'Witch'])
+    result = roles(request.args.to_dict())
+    return jsonify(result)
