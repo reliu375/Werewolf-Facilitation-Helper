@@ -23,9 +23,6 @@ dash-table==4.5.1
 dask==2.8.0
 decorator==4.4.0
 defusedxml==0.6.0
-en-core-web-sm==2.2.5
-entrypoints==0.3
--e git+ssh://git@github.mit.edu/rbliu/nlp_roberta.git@5d68b6d45bcd29bf7fdaa2e285f523b0ff5c8a26#egg=fairseq&subdirectory=fairseq
 fastBPE==0.1.0
 feedfinder2==0.0.4
 feedparser==5.2.1
