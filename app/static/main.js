@@ -34,12 +34,18 @@ function parseInput(){
   if (isNaN(numGuard))
     numGuard = 0;
 
+  var knightElement = document.getElementById('num_knight');
+  var numKnight = parseInt(knightElement.value.toString());
+  if (isNaN(numKnight))
+    numKnight = 0;
+
   var input_dict = {'wolf': numWolves,
                     'villager': numVillagers,
                     'seer': numSeer,
                     'witch': numWitch,
                     'hunter': numHunter,
-                    'guard': numGuard};
+                    'guard': numGuard,
+                    'knight': numKnight };
 
   return input_dict
 }
