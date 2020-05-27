@@ -21,10 +21,6 @@ dash-renderer==1.2.2
 dash-table==4.5.1
 dask==2.8.0
 decorator==4.4.0
-defusedxml==0.6.0
-fastBPE==0.1.0
-feedfinder2==0.0.4
-feedparser==5.2.1
 Flask==1.1.1
 Flask-Compress==1.4.0
 Flask-SQLAlchemy==2.4.1

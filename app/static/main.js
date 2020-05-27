@@ -51,9 +51,10 @@ function parseInput(){
 }
 
 function requestRoles(input) {
+  input['game_type'] = 'werewolf';
   var result;
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     url: '/distribute_role',
     data: input
   }).done(function(data){
