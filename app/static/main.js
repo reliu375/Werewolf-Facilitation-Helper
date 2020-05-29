@@ -58,15 +58,16 @@ function requestRoles(input) {
     url: '/distribute_role',
     data: input
   }).done(function(data){
+    console.log(data);
     var roleElement = document.getElementById('role_list');
     roleElement.parentNode.removeChild(roleElement);
 
     var roleDiv = document.getElementById('role-distribution-list');
-    roleDiv.innerHTML="角色分配";
+    roleDiv.innerHTML="角色分配<br>Game ID: " + data['game_id'];
     roleElement = document.createElement('ul');
     roleElement.setAttribute('id', 'role_list');
-    for (var ix = 0; ix < data.length; ++ix){
-      var s = (ix+1).toString() + ": " + data[ix];
+    for (var ix = 0; ix < data['roles'].length; ++ix){
+      var s = (ix+1).toString() + ": " + data['roles'][ix];
       var li = document.createElement('li');
       li.append(document.createTextNode(s));
       roleElement.appendChild(li);

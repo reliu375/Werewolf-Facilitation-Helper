@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Werewolf Facilitation Helper</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet", href="{{ url_for('static', filename='style.css') }}">
+	</head>
+	<body>
+		<nav class="navbar navbar-light bg-light">
+  		<span class="navbar-text">
+    	Zoom Board Game Facilitation Helper
+  		</span>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm">
+          <h2>Roles</h2>
+          <!-- Number of Players-->
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Game ID</span>
+						</div>
+						<input type="text" class="form-control" id="game_id" placeholder="Enter a 6-digit game ID code." aria-label="game_id" aria-describedby="basic-addon1">
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Player Number</span>
+						</div>
+						<input type="text" class="form-control" id="player_num" placeholder="Enter your player number." aria-label="player_num" aria-describedby="basic-addon1">
+					</div>
+					<div class="row" id="submit">
+						<button onclick="check()" type="button" class="btn btn-primary">Check Your Role</button>
+					</div>
+					<div id="inputErrorRemind">
+						<!-- placeholder for possible -->
+					</div>
+				</div>
+				<div class="col-sm">
+					<h2>Your Role</h2>
+					<div id="role-result">
+					</div>
+				</div>
+			</div>
+		</div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='checker.js') }}"></script>
+	</body>
+</html>

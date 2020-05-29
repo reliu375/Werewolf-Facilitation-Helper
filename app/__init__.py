@@ -25,14 +25,28 @@ db.create_all()
 def render_HTML():
     return render_template('index.html')
 
+@app.route('/check')
+def render_role_check():
+    return render_template('checker.html')
+
 @app.route('/distribute_role', methods=['POST'])
 def distribute_role():
     inp = request.form.to_dict()
     type = inp['game_type']
     del inp['game_type']
     result = roles(inp)
-    commit_roles_to_db(result, type)
-    return jsonify(result)
+    game_id = commit_roles_to_db(result, type)
+    return jsonify({'roles': result, 'game_id': game_id})
+
+@app.route('/check_role', methods=['GET'])
+def check_role():
+    inp = request.args.to_dict()
+    result = Role_Assignment.query.filter_by(game_id=inp['game_id'],
+                                             player_num=inp['player_num']).first()
+    if result is None:
+        return jsonify({'role': ''})
+    else:
+        return jsonify({'role': result.role})
 
 def commit_roles_to_db(role_list, type_of_game):
     new_game_id = None
@@ -55,6 +69,7 @@ def commit_roles_to_db(role_list, type_of_game):
         db.session.add(assignment)
 
     db.session.commit()
+    return new_game_id
 
 def insert_game(game_id, type_of_game):
     new_game = Game(game_id, type_of_game)
