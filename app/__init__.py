@@ -25,6 +25,10 @@ db.create_all()
 def render_HTML():
     return render_template('index.html')
 
+@app.route('/moderate')
+def render_moderation_page():
+    return render_template('moderate.html')
+
 @app.route('/check')
 def render_role_check():
     return render_template('checker.html')
@@ -47,6 +51,8 @@ def check_role():
         return jsonify({'role': ''})
     else:
         return jsonify({'role': result.role})
+
+
 
 def commit_roles_to_db(role_list, type_of_game):
     new_game_id = None

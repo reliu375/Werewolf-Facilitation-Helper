@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Werewolf Facilitation Helper</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet", href="{{ url_for('static', filename='style.css') }}">
+	</head>
+	<body>
+		<nav class="navbar navbar-light bg-light">
+  		<span class="navbar-text">
+    	Zoom Board Game Facilitation Helper
+  		</span>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm">
+          <h2>Roles</h2>
+          <!-- Number of Players-->
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Number of werewolves(狼人)</span>
+						</div>
+						<input type="text" class="form-control" id="num_wolves" placeholder="Enter an integer that is at most 4." aria-label="wolves" aria-describedby="basic-addon1">
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Number of villagers(平民)</span>
+						</div>
+						<input type="text" class="form-control" id="num_villagers" placeholder="Enter an integer that is at most 5." aria-label="villagers" aria-describedby="basic-addon1">
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Seer(预言家)</span>
+						</div>
+						<input type="text" class="form-control" id="num_seer" placeholder="Enter 1 if want to have a seer" aria-label="seer" aria-describedby="basic-addon1">
+					</div>
+          <div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Witch(女巫)</span>
+						</div>
+						<input type="text" class="form-control" id="num_witch" placeholder="Enter 1 if want to have a witch" aria-label="witch" aria-describedby="basic-addon1">
+					</div>
+          <div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Hunter(猎人)</span>
+						</div>
+						<input type="text" class="form-control" id="num_hunter" placeholder="Enter 1 if want to have a hunter" aria-label="hunter" aria-describedby="basic-addon1">
+					</div>
+          <div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Guard(守卫)</span>
+						</div>
+						<input type="text" class="form-control" id="num_guard" placeholder="Enter 1 if want to have a guard" aria-label="guard" aria-describedby="basic-addon1">
+					</div>
+          <div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Knight(骑士)</span>
+						</div>
+						<input type="text" class="form-control" id="num_knight" placeholder="Enter 1 if want to have a knight" aria-label="knight" aria-describedby="basic-addon1">
+					</div>
+					<div id="inputErrorRemind">
+						<!-- placeholder for possible -->
+					</div>
+					<div class="row" id="submit">
+						<button onclick="distribute()" type="button" class="btn btn-primary">Distribute Roles</button>
+					</div>
+				</div>
+				<div class="col-sm">
+					<h2>Role Distribution</h2>
+					<div id="role-distribution-list">
+						<ul id="role_list">
+							<!--li --><!--/li-->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='moderate.js') }}"></script>
+	</body>
+</html>
