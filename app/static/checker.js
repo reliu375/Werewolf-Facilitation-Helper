@@ -52,6 +52,8 @@ function requestRole(input){
     roleDocument.innerHTML = '';
     if (data['role'] !== ''){
       roleDocument.innerHTML = "你的身份是：" + roleDict[data['role']];
+      var button = document.getElementById("role-checker");
+      button.disabled = true;
     } else {
       error('Cannot find your role. Please double check your game ID and/or player number.')
     }
