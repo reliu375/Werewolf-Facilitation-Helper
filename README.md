@@ -20,6 +20,7 @@ This web app is still pretty much a work-in-progress. Here are a list of items I
 - Add user login to improve security of role information.
 - Add special werewolf selection for moderators on the werewolf moderation page.
 - Implement other games for moderators(e.g. 狼人猜词(A word guessing game, but people have different roles)/谁是卧底(Figure out people who may have a different word that you are describing)).
+- Voting for game players.
 
 If you have any suggestions, feel free to put it as an issue. However, I will decide whether to implement it. At the end of the day, I use this app for the purpose of moderating the game.
 
