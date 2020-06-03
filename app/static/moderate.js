@@ -14,30 +14,24 @@ function parseInput(){
   if (isNaN(numVillagers))
     numVillagers = 0;
 
-  var seerElement = document.getElementById('num_seer');
-  var numSeer = parseInt(seerElement.value.toString());
-  if (isNaN(numSeer))
-    numSeer = 0;
+  var seerElement = document.getElementById('seer');
+  var numSeer = (seerElement.checked) ? 1 : 0;
 
-  var witchElement = document.getElementById('num_witch');
-  var numWitch = parseInt(witchElement.value.toString());
-  if (isNaN(numWitch))
-    numWitch = 0;
 
-  var hunterElement = document.getElementById('num_hunter');
-  var numHunter = parseInt(hunterElement.value.toString());
-  if (isNaN(numHunter))
-    numHunter = 0;
+  var witchElement = document.getElementById('witch');
+  var numWitch = (witchElement.checked) ? 1 : 0;
 
-  var guardElement = document.getElementById('num_guard');
-  var numGuard = parseInt(guardElement.value.toString());
-  if (isNaN(numGuard))
-    numGuard = 0;
+  var hunterElement = document.getElementById('hunter');
+  var numHunter = (hunterElement.checked) ? 1 : 0;
 
-  var knightElement = document.getElementById('num_knight');
-  var numKnight = parseInt(knightElement.value.toString());
-  if (isNaN(numKnight))
-    numKnight = 0;
+  var guardElement = document.getElementById('guard');
+  var numGuard = (guardElement.checked) ? 1 : 0;
+
+  var knightElement = document.getElementById('knight');
+  var numKnight = (knightElement.checked) ? 1 : 0;
+
+  var idiotElement = document.getElementById('idiot');
+  var numIdiot = (idiotElement.checked) ? 1 : 0;
 
   var input_dict = {'wolf': numWolves,
                     'villager': numVillagers,
@@ -45,8 +39,8 @@ function parseInput(){
                     'witch': numWitch,
                     'hunter': numHunter,
                     'guard': numGuard,
-                    'knight': numKnight };
-
+                    'knight': numKnight,
+                    'idiot': numIdiot };
   return input_dict
 }
 
