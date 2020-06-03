@@ -37,7 +37,13 @@ def render_role_check():
 def distribute_role():
     inp = request.form.to_dict()
     type = inp['game_type']
+    
+    # Parse special wolves into input
+    inp['special_wolf'] = request.form.getlist('special_wolf[]')
     del inp['game_type']
+    if 'special_wolf[]' in inp:
+        del inp['special_wolf[]']
+
     result = roles(inp)
     game_id = commit_roles_to_db(result, type)
     return jsonify({'roles': result, 'game_id': game_id})

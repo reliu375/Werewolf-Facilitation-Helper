@@ -5,7 +5,15 @@ var roleDict = {
   "seer": "预言家",
   "hunter": "猎人",
   "guard": "守卫",
-  "knight": "骑士"
+  "knight": "骑士",
+  "idiot": "白痴神",
+  "seer!": "通灵师",
+  "nightmare wolf": "梦魇",
+  "wolf king": "狼王",
+  "wolf beauty": "狼美人",
+  "mechanical wolf": "机械狼人",
+  "hidden wolf": "隐狼",
+  "wolf bishop": "种狼"
 };
 
 function check(){

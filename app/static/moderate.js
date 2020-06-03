@@ -14,9 +14,9 @@ function parseInput(){
   if (isNaN(numVillagers))
     numVillagers = 0;
 
+  // Special villagers
   var seerElement = document.getElementById('seer');
   var numSeer = (seerElement.checked) ? 1 : 0;
-
 
   var witchElement = document.getElementById('witch');
   var numWitch = (witchElement.checked) ? 1 : 0;
@@ -33,6 +33,12 @@ function parseInput(){
   var idiotElement = document.getElementById('idiot');
   var numIdiot = (idiotElement.checked) ? 1 : 0;
 
+// Special Wolves
+  var specialWolvesElement = document.getElementById('special_wolves');
+  var regExp = /[(/]/;
+  var specialWolfList = specialWolvesElement.value.toLowerCase().split(regExp);
+  specialWolfList.pop();
+
   var input_dict = {'wolf': numWolves,
                     'villager': numVillagers,
                     'seer': numSeer,
@@ -40,7 +46,8 @@ function parseInput(){
                     'hunter': numHunter,
                     'guard': numGuard,
                     'knight': numKnight,
-                    'idiot': numIdiot };
+                    'idiot': numIdiot,
+                    'special_wolf': specialWolfList };
   return input_dict
 }
 
