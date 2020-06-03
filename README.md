@@ -18,7 +18,7 @@ https://werewolf-facilitator.herokuapp.com/
 ## Future Improvements & Features:
 This web app is still pretty much a work-in-progress. Here are a list of items I am thinking of implementing.
 - Add user login to improve security of role information.
-- Add special werewolf selection for moderators on the werewolf moderation page(*implemented*).
+- Add special werewolf selection for moderators on the werewolf moderation page(*implemented, debugging in progress*).
 - Implement other games for moderators(e.g. 狼人猜词(A word guessing game, but people have different roles)/谁是卧底(Figure out people who may have a different word that you are describing)).
 - Voting for game players.
 
