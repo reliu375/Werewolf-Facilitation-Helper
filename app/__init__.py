@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 from .database import db
 from .werewolf_roles import roles
-from .models import Game, Role_Assignment
+from .models import Game, Role_Assignment, Vote
 
 app = Flask(__name__)
 load_dotenv()
@@ -33,11 +33,45 @@ def render_moderation_page():
 def render_role_check():
     return render_template('checker.html')
 
+@app.route('/vote')
+def render_vote():
+    return render_template('vote.html')
+
+@app.route('/cast_vote', methods=['POST'])
+def cast_vote():
+    inp = request.form.to_dict()
+    game_id = inp['game_id']
+    player_num = inp['player_num']
+    day = inp['day']
+    pk = inp['pk']
+    vote_for = inp['vote_for']
+
+    vote = Vote(game_id, player_num, day, pk, vote_for)
+    print(vote.__dict__)
+    try:
+        db.session.add(vote)
+        db.session.commit()
+        return jsonify({'success': 1})
+    except Exception as e:
+        print(e)
+        return jsonify({'success': 0})
+
+@app.route('/get_vote', methods=['GET'])
+def get_vote():
+    inp = request.args.to_dict()
+    result = Vote.query.filter_by(game_id = inp['game_id'],
+                                  day = inp['day'],
+                                  pk = inp['pk']).all()
+
+    vote_dict = parse_vote_result(result)
+
+    return jsonify({'success': 1, 'votes': vote_dict})
+
 @app.route('/distribute_role', methods=['POST'])
 def distribute_role():
     inp = request.form.to_dict()
     type = inp['game_type']
-    
+
     # Parse special wolves into input
     inp['special_wolf'] = request.form.getlist('special_wolf[]')
     del inp['game_type']
@@ -93,3 +127,14 @@ def insert_game(game_id, type_of_game):
 def generate_random_game_id(length = 6):
     all_chars = string.digits
     return ''.join([random.choice(all_chars) for i in range(length)])
+
+def parse_vote_result(result):
+    vote_dict = {}
+    for elt in result:
+        if elt.vote_for not in vote_dict:
+            vote_dict[elt.vote_for] = []
+        vote_dict[elt.vote_for].append(elt.player_num)
+
+    vote_dict = {key: ', '.join([str(num) for num in vote_dict[key]]) for key in vote_dict}
+
+    return vote_dict
