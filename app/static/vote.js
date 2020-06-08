@@ -34,7 +34,7 @@ function parseCastVoteInput() {
     return;
   }
 
-  var pk = (document.getElementById('pk').value.checked) ? 1 : 0;
+  var pk = (document.getElementById('pk').checked) ? 1 : 0;
 
   var voteForElement = document.getElementById('vote_for');
   var voteFor = parseInt(voteForElement.value.toString());
@@ -70,7 +70,7 @@ function parseCheckVoteInput() {
     return;
   }
 
-  var pk = (document.getElementById('pk2').value.checked) ? 1 : 0;
+  var pk = (document.getElementById('pk2').checked) ? 1 : 0;
 
   var input_dict = {'game_id': gameId,
                     'day': day,
@@ -91,6 +91,7 @@ function castVote(input){
     console.log(data);
     if (parseInt(data['success']) == 1){
       error('Your vote is recorded.', 'inputErrorRemind')
+      clearInputs();
     } else {
       error('There is something wrong with your vote! Try again.', 'inputErrorRemind')
     }
@@ -130,8 +131,21 @@ function getVote(input){
       }
 
       resultParent.appendChild(resultElement);
+
+      clearInputs();
+
     } else {
       error('There is something wrong with your query! Try again.', 'inputErrorRemind2')
     }
   });
+}
+
+function clearInputs(){
+  var listOfInputs = document.getElementsByClassName('form-control');
+  console.log(listOfInputs);
+  for (ix in listOfInputs){
+    listOfInputs[ix].value = '';
+  }
+  document.getElementById('pk').value.checked = false;
+  document.getElementById('pk2').value.checked = false;
 }
