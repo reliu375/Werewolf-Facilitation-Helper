@@ -6,6 +6,7 @@ import psycopg2
 import random
 import string
 from dotenv import load_dotenv
+from sqlalchemy.exc import IntegrityError
 
 from .database import db
 from .werewolf_roles import roles
@@ -21,6 +22,7 @@ db.init_app(app)
 app.app_context().push()
 db.create_all()
 
+# pdb.set_trace()
 @app.route('/')
 def render_HTML():
     return render_template('index.html')
@@ -48,12 +50,23 @@ def cast_vote():
 
     vote = Vote(game_id, player_num, day, pk, vote_for)
     print(vote.__dict__)
+
     try:
+        success_code = 1
+        current_vote = Vote.query.filter_by(game_id = game_id,
+                                            day = day,
+                                            pk = pk,
+                                            player_num = player_num).first()
+        if current_vote is not None:
+            db.session.delete(current_vote)
+            db.session.commit()
+            success_code = 2
+
         db.session.add(vote)
         db.session.commit()
-        return jsonify({'success': 1})
+
+        return jsonify({'success': success_code})
     except Exception as e:
-        print(e)
         return jsonify({'success': 0})
 
 @app.route('/get_vote', methods=['GET'])

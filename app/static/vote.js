@@ -88,9 +88,12 @@ function castVote(input){
     url: '/cast_vote',
     data: input
   }).done(function(data){
-    console.log(data);
-    if (parseInt(data['success']) == 1){
-      error('Your vote is recorded.', 'inputErrorRemind')
+    console.log(data['success']);
+    if (parseInt(data['success']) === 1){
+      error('Your vote is recorded.', 'inputErrorRemind');
+      clearInputs();
+    } else if (parseInt(data['success']) === 2){
+      error('Your vote is updated.', 'inputErrorRemind');
       clearInputs();
     } else {
       error('There is something wrong with your vote! Try again.', 'inputErrorRemind')
