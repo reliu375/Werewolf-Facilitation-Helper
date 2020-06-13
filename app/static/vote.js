@@ -1,3 +1,6 @@
+const BUTTON_TIMEOUT = 5000;
+const BUTTON_GET_TIMEOUT = 15000;
+
 function vote() {
   var input_dict = parseCastVoteInput();
   if (input_dict){
@@ -92,9 +95,11 @@ function castVote(input){
     if (parseInt(data['success']) === 1){
       error('Your vote is recorded.', 'inputErrorRemind');
       clearInputs();
+      disableVoteButton()
     } else if (parseInt(data['success']) === 2){
       error('Your vote is updated.', 'inputErrorRemind');
       clearInputs();
+      disableVoteButton()
     } else {
       error('There is something wrong with your vote! Try again.', 'inputErrorRemind')
     }
@@ -136,6 +141,7 @@ function getVote(input){
       resultParent.appendChild(resultElement);
 
       clearInputs();
+      disableButton();
 
     } else {
       error('There is something wrong with your query! Try again.', 'inputErrorRemind2')
@@ -151,4 +157,20 @@ function clearInputs(){
   }
   document.getElementById('pk').value.checked = false;
   document.getElementById('pk2').value.checked = false;
+}
+
+function disableButton() {
+  var button = document.getElementById('vote-checker');
+  button.disabled = true;
+  setTimeout(function(){
+    button.disabled = false;
+  }, BUTTON_GET_TIMEOUT);
+}
+
+function disableVoteButton(){
+  var button = document.getElementById('submit-vote');
+  button.disabled = true;
+  setTimeout(function(){
+    button.disabled = false;
+  }, BUTTON_TIMEOUT);
 }
