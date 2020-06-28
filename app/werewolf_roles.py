@@ -20,3 +20,21 @@ def roles(input_dict):
                 all_roles[ix] = 'seer!'
 
     return all_roles
+
+def dual_roles(num_players):
+    if type(num_players) != int:
+        raise ValueError('Number of players must be integer.')
+
+    if num_players not in [6, 7, 8]:
+        raise ValueError('Current version only supports a game of 6-8 players.')
+
+    if num_players == 6:
+        roles = ['wolf'] + ['fast wolf'] + ['villager'] * 5 + ['seer', 'witch', 'hunter', 'idiot', 'copier',]
+    elif num_players == 7:
+        roles = ['wolf'] * 2 + ['fast wolf'] + ['villager'] * 5 + ['seer', 'witch', 'hunter', 'idiot', 'copier', 'guard']
+    elif num_players == 8:
+        roles = ['wolf'] * 2 + ['fast wolf'] + ['villager'] * 6 + ['seer', 'witch', 'hunter', 'idiot', 'copier', 'guard', 'gravekeeper']
+
+    random.shuffle(roles)
+
+    return roles

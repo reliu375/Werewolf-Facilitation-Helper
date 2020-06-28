@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from sqlalchemy.exc import IntegrityError
 
 from .database import db
-from .werewolf_roles import roles
+from .werewolf_roles import roles, dual_roles
 from .models import Game, Role_Assignment, Vote
 
 app = Flask(__name__)
@@ -95,16 +95,42 @@ def distribute_role():
     game_id = commit_roles_to_db(result, type)
     return jsonify({'roles': result, 'game_id': game_id})
 
+@app.route('/distribute_dual_role', methods=['POST'])
+def distribute_dual_role():
+    inp = request.form.to_dict()
+    num_players = int(inp['num_players'])
+
+    result = dual_roles(num_players)
+    game_id = commit_roles_to_db(result, 'dual_werewolf')
+    return jsonify({'roles': result, 'game_id': game_id})
+
 @app.route('/check_role', methods=['GET'])
 def check_role():
     inp = request.args.to_dict()
-    result = Role_Assignment.query.filter_by(game_id=inp['game_id'],
-                                             player_num=inp['player_num']).first()
-    if result is None:
-        return jsonify({'role': ''})
-    else:
-        return jsonify({'role': result.role})
+    game_type = Game.query.filter_by(id = inp['game_id']).first().type
 
+    player_num = int(inp['player_num'])
+
+    if game_type == 'werewolf':
+        result = Role_Assignment.query.filter_by(game_id=inp['game_id'],
+                                                 player_num=inp['player_num']).first()
+        if result is None:
+            return jsonify({'role': ''})
+        else:
+            return jsonify({'role': result.role})
+    elif game_type == 'dual_werewolf':
+        player_ids = [player_num*2-1, player_num*2]
+        roles = []
+        for id in player_ids:
+            result = Role_Assignment.query.filter_by(game_id=inp['game_id'],
+                                                   player_num=id).first()
+            roles.append(result.role)
+            if result is None:
+                return jsonify({'role': ''})
+
+        return jsonify({'role': roles})
+    else:
+        return jsonify({'role': ''})
 
 
 def commit_roles_to_db(role_list, type_of_game):

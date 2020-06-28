@@ -87,3 +87,36 @@ function requestRoles(input) {
 
   return result;
 }
+
+function requestDualRoles(){
+  var numElement = document.getElementById('num_players');
+  var numPlayers = parseInt(numElement.value.toString());
+  if (isNaN(numPlayers))
+    numPlayers = 0;
+
+  var result;
+  $.ajax({
+    type: 'POST',
+    url: '/distribute_dual_role',
+    data: {'num_players': numPlayers}
+  }).done(function(data){
+    console.log(data);
+    var roleElement = document.getElementById('role_list');
+    roleElement.parentNode.removeChild(roleElement);
+
+    var roleDiv = document.getElementById('role-distribution-list');
+    roleDiv.innerHTML="角色分配<br>Game ID: " + data['game_id'];
+    roleElement = document.createElement('ul');
+    roleElement.setAttribute('id', 'role_list');
+    for (var ix = 0; ix < data['roles'].length; ix+=2){
+      var s = ((ix+2)/2).toString() + ": " + data['roles'][ix] + ', ' + data['roles'][ix+1];
+      var li = document.createElement('li');
+      li.append(document.createTextNode(s));
+      roleElement.appendChild(li);
+    }
+
+    roleDiv.appendChild(roleElement);
+  });
+
+  return result;
+}

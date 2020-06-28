@@ -15,7 +15,8 @@ var roleDict = {
   "wolf beauty": "狼美人",
   "mechanical wolf": "机械狼人",
   "hidden wolf": "隐狼",
-  "wolf bishop": "种狼"
+  "wolf bishop": "种狼",
+  "fast wolf": "潜行狼"
 };
 
 function check(){
@@ -60,7 +61,13 @@ function requestRole(input){
   }).done(function(data){
     var roleDocument = document.getElementById('role-result');
     roleDocument.innerHTML = '';
-    if (data['role'] !== ''){
+    if (Array.isArray(data['role'])){
+      var s = "你的身份是：";
+      s += roleDict[data['role'][0]] + ', ' + roleDict[data['role'][1]];
+      roleDocument.innerHTML = s;
+      var button = document.getElementById("role-checker");
+      button.disabled = true;
+    } else if (data['role'] !== ''){
       roleDocument.innerHTML = "你的身份是：" + roleDict[data['role']];
       var button = document.getElementById("role-checker");
       button.disabled = true;
