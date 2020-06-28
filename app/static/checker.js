@@ -8,6 +8,8 @@ var roleDict = {
   "knight": "骑士",
   "idiot": "白痴神",
   "seer!": "通灵师",
+  "gravekeeper": "守墓人",
+  "copier": "复刻",
   "nightmare wolf": "梦魇",
   "wolf king": "狼王",
   "wolf beauty": "狼美人",

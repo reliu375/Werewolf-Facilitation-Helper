@@ -33,6 +33,12 @@ function parseInput(){
   var idiotElement = document.getElementById('idiot');
   var numIdiot = (idiotElement.checked) ? 1 : 0;
 
+  var graveElement = document.getElementById('gravekeeper');
+  var numGrave = (graveElement.checked) ? 1 : 0;
+
+  var copyElement = document.getElementById('copier');
+  var numCopy = (copyElement.checked) ? 1 : 0;
+
 // Special Wolves
   var specialWolvesElement = document.getElementById('special_wolves');
   var regExp = /[(/]/;
@@ -47,6 +53,8 @@ function parseInput(){
                     'guard': numGuard,
                     'knight': numKnight,
                     'idiot': numIdiot,
+                    'gravekeeper': numGrave,
+                    'copier': numCopy,
                     'special_wolf': specialWolfList };
   return input_dict
 }
