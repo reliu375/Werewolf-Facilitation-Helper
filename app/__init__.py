@@ -39,6 +39,10 @@ def render_role_check():
 def render_vote():
     return render_template('vote.html')
 
+@app.route('/assign')
+def render_assign():
+    return render_template('assign.html')
+
 @app.route('/cast_vote', methods=['POST'])
 def cast_vote():
     inp = request.form.to_dict()
