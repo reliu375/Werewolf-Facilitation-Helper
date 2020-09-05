@@ -111,7 +111,11 @@ def distribute_dual_role():
 @app.route('/check_role', methods=['GET'])
 def check_role():
     inp = request.args.to_dict()
-    game_type = Game.query.filter_by(id = inp['game_id']).first().type
+    game = Game.query.filter_by(id = inp['game_id']).first()
+    if game is None:
+        return jsonify({'role': ''})
+
+    game_type = game.type
 
     player_num = int(inp['player_num'])
 
