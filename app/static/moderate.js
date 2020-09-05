@@ -35,6 +35,9 @@ function parseInput(){
 
   var graveElement = document.getElementById('gravekeeper');
   var numGrave = (graveElement.checked) ? 1 : 0;
+  
+  var snailElement = document.getElementById('snailman');
+  var numSnail = (snailElement.checked) ? 1 : 0;
 
   var copyElement = document.getElementById('copier');
   var numCopy = (copyElement.checked) ? 1 : 0;
@@ -54,6 +57,7 @@ function parseInput(){
                     'knight': numKnight,
                     'idiot': numIdiot,
                     'gravekeeper': numGrave,
+                    'snailman': numSnail,
                     'copier': numCopy,
                     'special_wolf': specialWolfList };
   return input_dict
