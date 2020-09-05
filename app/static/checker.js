@@ -9,6 +9,7 @@ var roleDict = {
   "idiot": "白痴神",
   "seer!": "通灵师",
   "gravekeeper": "守墓人",
+  "snailman": "蜗牛",
   "copier": "复刻",
   "nightmare wolf": "梦魇",
   "wolf king": "狼王",
