@@ -11,7 +11,7 @@ def roles(input_dict):
         else:
             all_roles += input_dict[role]
 
-    random.shuffle(all_roles)
+    all_roles = shuffle(all_roles)
 
     # strengthen seer in case of mechanical wolf
     if 'mechanical wolf' in all_roles:
@@ -36,5 +36,12 @@ def dual_roles(num_players):
         roles = ['wolf'] * 2 + ['fast wolf'] + ['villager'] * 6 + ['seer', 'witch', 'hunter', 'idiot', 'copier', 'guard', 'gravekeeper']
 
     random.shuffle(roles)
+
+    return roles
+
+def shuffle(roles):
+    for ix in range(len(roles)):
+        jx = random.randint(ix, len(roles) - 1)
+        roles[ix], roles[jx] = roles[jx], roles[ix]
 
     return roles
