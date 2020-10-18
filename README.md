@@ -19,6 +19,7 @@ https://werewolf-facilitator.herokuapp.com/
 This web app is still pretty much a work-in-progress. Here are a list of items I am thinking of implementing.
 - Add user login to improve security of role information.
 - Voting for game players - there is instability with the system when someone enters invalid information.
+- Hyperlinks to check out role details
 
 If you have any suggestions, feel free to put it as an issue. However, I will decide whether to implement it. At the end of the day, I use this app for the purpose of moderating the game.
 
